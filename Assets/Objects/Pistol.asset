@@ -12,23 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d45884476ebd547bdb864764f2d3df, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  fire:
-    m_Name: Fire
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7e3dd0b5-b84f-49cb-b159-b8ba77db0780
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: f7a938cb-ff5e-432d-80ca-6e6748df1be5
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
-  damage: 0
-  Range: 0
-  magazineSize: 0
-  weaponPrefab: {fileID: 0}
+  damage: 10
+  Range: 100
+  magazineSize: 15
+  bulletPrefab: {fileID: 7732693911838262616, guid: af402ad628ac95440a3259e23da58285,
+    type: 3}

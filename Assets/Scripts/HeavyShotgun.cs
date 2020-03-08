@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SemiAutoRifle : UsableWeapon
+public class HeavyShotgun : UsableWeapon
 {
     [SerializeField]
     protected InputAction fire;
     [SerializeField]
-    private Rifle rifle;
+    private Weapon shotgun;
     [SerializeField]
-    private GameObject spawn;
+    private GameObject spawnOne;
+    [SerializeField]
+    private GameObject spawnTwo;
+    [SerializeField]
+    private GameObject spawnThree;
+    [SerializeField]
+    private GameObject spawnFour;
 
     private bool hasReleasedFire = true;
 
@@ -25,46 +31,26 @@ public class SemiAutoRifle : UsableWeapon
         var value = ctx.ReadValue<float>();
         if (value > 0)
         {
-            rifle.isFire = true;
+            shotgun.isFire = true;
         }
         else
         {
-            rifle.isFire = false;
+            shotgun.isFire = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rifle.Burst)
+        if (shotgun.isFire && hasReleasedFire)
         {
-            BurstFire(); 
-        }
-        else
-        {
-            FullAutoFire();
-        }
-    }
-
-    private void FullAutoFire()
-    {
-        if (rifle.isFire)
-        {
-            rifle.Fire(spawn);
-        }
-    }
-
-    private void BurstFire()
-    {
-        if (rifle.isFire && hasReleasedFire)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                rifle.Fire(spawn); 
-            }
+            shotgun.Fire(spawnOne);
+            shotgun.Fire(spawnTwo);
+            shotgun.Fire(spawnThree);
+            shotgun.Fire(spawnFour);
             hasReleasedFire = false;
         }
-        else if (!rifle.isFire)
+        else if (!shotgun.isFire)
         {
             hasReleasedFire = true;
         }
@@ -79,6 +65,6 @@ public class SemiAutoRifle : UsableWeapon
     private void OnDisable()
     {
         fire.Disable();
-    } 
+    }
     #endregion
 }

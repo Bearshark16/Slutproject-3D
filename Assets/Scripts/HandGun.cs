@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SemiAutoRifle : UsableWeapon
+public class HandGun : UsableWeapon
 {
     [SerializeField]
     protected InputAction fire;
     [SerializeField]
-    private Rifle rifle;
+    private Weapon pistol;
     [SerializeField]
     private GameObject spawn;
 
@@ -25,46 +25,23 @@ public class SemiAutoRifle : UsableWeapon
         var value = ctx.ReadValue<float>();
         if (value > 0)
         {
-            rifle.isFire = true;
+            pistol.isFire = true;
         }
         else
         {
-            rifle.isFire = false;
+            pistol.isFire = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rifle.Burst)
+        if (pistol.isFire && hasReleasedFire)
         {
-            BurstFire(); 
-        }
-        else
-        {
-            FullAutoFire();
-        }
-    }
-
-    private void FullAutoFire()
-    {
-        if (rifle.isFire)
-        {
-            rifle.Fire(spawn);
-        }
-    }
-
-    private void BurstFire()
-    {
-        if (rifle.isFire && hasReleasedFire)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                rifle.Fire(spawn); 
-            }
+            pistol.Fire(spawn);
             hasReleasedFire = false;
         }
-        else if (!rifle.isFire)
+        else if (!pistol.isFire)
         {
             hasReleasedFire = true;
         }
@@ -79,6 +56,6 @@ public class SemiAutoRifle : UsableWeapon
     private void OnDisable()
     {
         fire.Disable();
-    } 
+    }
     #endregion
 }
