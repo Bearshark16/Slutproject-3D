@@ -292,12 +292,20 @@ MonoBehaviour:
     type: 3}
   fire:
     m_Name: Fire
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: acfeb8d8-ce0c-4ee8-815d-46e6a7972045
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 00edf732-b7aa-4101-a617-394c30bc04af
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fire
+      m_Flags: 0
   pistol: {fileID: 11400000, guid: 728e0e86f700c674fbff113ab7f21f8c, type: 2}
   spawn: {fileID: 900067110216742458}
 --- !u!1 &1429655430221584

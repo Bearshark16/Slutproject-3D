@@ -13,6 +13,7 @@ public class HandGun : UsableWeapon
     private GameObject spawn;
 
     private bool hasReleasedFire = true;
+    public Camera cam;
 
     private void Awake()
     {
@@ -36,6 +37,10 @@ public class HandGun : UsableWeapon
     // Update is called once per frame
     void Update()
     {
+        
+        cam = transform.parent.transform.parent.gameObject.GetComponent<Camera>();
+        
+
         if (pistol.isFire && hasReleasedFire)
         {
             pistol.Fire(spawn);

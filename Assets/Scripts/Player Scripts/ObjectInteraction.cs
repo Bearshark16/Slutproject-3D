@@ -46,7 +46,7 @@ public class ObjectInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             if (hit.transform.tag == "Weapon")
             {
                 toolTip.SetActive(true);
@@ -63,7 +63,6 @@ public class ObjectInteraction : MonoBehaviour
                     Destroy(hit.transform.gameObject);
                     Instantiate(oldWp, local, oldWp.transform.rotation);
                     GameObject x = Instantiate(newWp, weaponLocation.transform.position, weaponLocation.transform.rotation);
-                    x.GetComponent<Rigidbody>().isKinematic = true;
                     x.transform.SetParent(weaponLocation.transform);
                 }
             }

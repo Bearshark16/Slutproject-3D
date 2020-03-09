@@ -17,4 +17,4 @@ MonoBehaviour:
   magazineSize: 30
   bulletPrefab: {fileID: 2240793307745596466, guid: bb31c93c50f35264a8c0a6080aecf59b,
     type: 3}
-  Burst: 0
+  Burst: 1

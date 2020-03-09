@@ -5,15 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Pistol", menuName = "Objects/Weapons/Pistol")]
 public class Pistol : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Fire(GameObject spawn)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("fire");
+        GameObject clone = Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation) as GameObject;
+        clone.GetComponent<Rigidbody>().AddForce(spawn.transform.forward * 2000);
     }
 }
