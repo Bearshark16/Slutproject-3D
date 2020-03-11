@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class CameraRotation : MonoBehaviour
 {
-    public InputAction cameraRotation;
     public Transform playerBody;
     public Camera playerCamera;
     public float sensitivity = 100f;
@@ -13,29 +12,6 @@ public class CameraRotation : MonoBehaviour
     float mouseX;
     float mouseY;
     float xRotation = 0f;
-
-    private void Awake()
-    {
-        cameraRotation.performed += OnMouseMovement;
-        cameraRotation.canceled += OnMouseMovement;
-    }
-
-    private void OnMouseMovement(InputAction.CallbackContext ctx)
-    {
-        var value = ctx.ReadValue<Vector2>();
-        mouseX = value.x;
-        mouseY = value.y;
-    }
-
-    private void OnEnable()
-    {
-        cameraRotation.Enable();
-    }
-
-    private void OnDisable()
-    {
-        cameraRotation.Disable();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +23,8 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mouseX = Keybindings.instance.rotation.x;
+        mouseY = Keybindings.instance.rotation.y;
         MouseLook();
     }
 

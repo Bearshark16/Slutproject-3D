@@ -5,22 +5,45 @@ using UnityEngine.InputSystem;
 
 public class Keybindings : MonoBehaviour
 {
-    [Header("InputActions")]
-    public InputAction movementControlls;
-    public InputAction sprintButton;
-    public InputAction jump;
+    public static Keybindings instance;
 
-    protected bool isJumping;
-    protected bool isRunning;
+    public InputAction playerMovement;
+    public InputAction playerRotation;
+    public InputAction sprint;
+    public InputAction jump;
+    public InputAction fire;
+    public InputAction interact;
+
+    public bool isJumping;
+    public bool isRunning;
+    public bool isInteracting;
+    public bool isFire;
+
+    public Vector2 direction;
+    public Vector2 rotation;
 
     void Awake()
     {
-        movementControlls.performed += OnMovement;
-        movementControlls.canceled += OnMovement;
-        sprintButton.performed += OnSprint;
-        sprintButton.canceled += OnSprint;
+        if (instance != null)
+        {
+            Debug.LogWarning("Multiple instances of Inventory are present! There shoud only be one instance of Inventory in a scene");
+            return;
+        }
+
+        instance = this;
+
+        playerMovement.performed += OnMovement;
+        playerMovement.canceled += OnMovement;
+        playerRotation.performed += OnMouseMovement;
+        playerRotation.canceled += OnMouseMovement;
+        sprint.performed += OnSprint;
+        sprint.canceled += OnSprint;
         jump.performed += OnJump;
         jump.canceled += OnJump;
+        fire.performed += OnFire;
+        fire.canceled += OnFire;
+        interact.performed += OnPickUp;
+        interact.canceled += OnPickUp;
     }
 
     private void OnJump(InputAction.CallbackContext ctx)
@@ -51,20 +74,57 @@ public class Keybindings : MonoBehaviour
 
     public virtual void OnMovement(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Is Moving");
+        direction = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnMouseMovement(InputAction.CallbackContext ctx)
+    {
+        rotation = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnPickUp(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValue<float>();
+        if (value > 0)
+        {
+            isInteracting = true;
+        }
+        else
+        {
+            isInteracting = false;
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValue<float>();
+        if (value > 0)
+        {
+            isFire = true;
+        }
+        else
+        {
+            isFire = false;
+        }
     }
 
     private void OnEnable()
     {
-        movementControlls.Enable();
-        sprintButton.Enable();
+        playerMovement.Enable();
+        playerRotation.Enable();
+        sprint.Enable();
         jump.Enable();
+        fire.Enable();
+        interact.Enable();
     }
 
     private void OnDisable()
     {
-        movementControlls.Disable();
-        sprintButton.Disable();
+        playerMovement.Disable();
+        playerRotation.Disable();
+        sprint.Disable();
         jump.Disable();
+        fire.Disable();
+        interact.Disable();
     }
 }

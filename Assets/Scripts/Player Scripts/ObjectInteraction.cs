@@ -7,8 +7,6 @@ using System;
 
 public class ObjectInteraction : MonoBehaviour
 {
-    public InputAction pickUp;
-
     public Camera cam;
     public float range = 100f;
 
@@ -17,28 +15,8 @@ public class ObjectInteraction : MonoBehaviour
     public GameObject toolTip;
     public TextMeshProUGUI pickUpName;
 
-    private bool isButtonPress;
     private GameObject newWp;
     private GameObject oldWp;
-
-    private void Awake()
-    {
-        pickUp.performed += OnPickUp;
-        pickUp.canceled += OnPickUp;
-    }
-
-    private void OnPickUp(InputAction.CallbackContext ctx)
-    {
-        var value = ctx.ReadValue<float>();
-        if (value > 0)
-        {
-            isButtonPress = true;
-        }
-        else
-        {
-            isButtonPress = false;
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -46,12 +24,11 @@ public class ObjectInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            //Debug.Log(hit.transform.name);
             if (hit.transform.tag == "Weapon")
             {
                 toolTip.SetActive(true);
                 pickUpName.text = hit.transform.name;
-                if (isButtonPress)
+                if (Keybindings.instance.isInteracting)
                 {
                     var local = hit.transform.position;
                     newWp = hit.transform.GetComponent<PickUp>().weaponPrefab;
@@ -64,6 +41,8 @@ public class ObjectInteraction : MonoBehaviour
                     Instantiate(oldWp, local, oldWp.transform.rotation);
                     GameObject x = Instantiate(newWp, weaponLocation.transform.position, weaponLocation.transform.rotation);
                     x.transform.SetParent(weaponLocation.transform);
+
+                    x.GetComponent<UsableWeapon>().PickedUpBy(this.gameObject);
                 }
             }
             else
@@ -72,16 +51,4 @@ public class ObjectInteraction : MonoBehaviour
             }
         }
     }
-
-    #region OnEnable&Disable
-    private void OnEnable()
-    {
-        pickUp.Enable();
-    }
-
-    private void OnDisable()
-    {
-        pickUp.Disable();
-    } 
-    #endregion
 }

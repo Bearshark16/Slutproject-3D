@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController3D : Keybindings
+public class PlayerController3D : MonoBehaviour
 {
     public CharacterController controller;
     public float walkingSpeed = 10f;
@@ -11,26 +11,22 @@ public class PlayerController3D : Keybindings
     public float jumpHeight = 3f;
     public float gravity = -9.81f;
 
-    private Vector2 direction;
+    private float gravityMultiplier = -9.81f;
+
     private Vector3 velocity;
     private bool isGrounded;
     private bool hasReleasedJump = true;
 
-    public override void OnMovement(InputAction.CallbackContext ctx)
-    {
-        direction = ctx.ReadValue<Vector2>();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (isRunning) 
+        if (Keybindings.instance.isRunning) 
         {
-            Move(controller, direction.x, direction.y, runningSpeed, jumpHeight, gravity, isJumping);
+            Move(controller, Keybindings.instance.direction.x, Keybindings.instance.direction.y, runningSpeed, jumpHeight, gravity, Keybindings.instance.isJumping);
         }
         else 
         {
-            Move(controller, direction.x, direction.y, walkingSpeed, jumpHeight, gravity, isJumping);
+            Move(controller, Keybindings.instance.direction.x, Keybindings.instance.direction.y, walkingSpeed, jumpHeight, gravity, Keybindings.instance.isJumping);
         } 
     }
 
@@ -62,9 +58,10 @@ public class PlayerController3D : Keybindings
 
         controller.Move(velocity * Time.deltaTime);
     }
+
     private float Jump(float height, float pull) 
     {
-        float value = Mathf.Sqrt(height * -2 * pull);
+        float value = Mathf.Sqrt(height * -2 * pull * gravityMultiplier);
 
         return value;
     }

@@ -33,6 +33,8 @@ public class SemiAutoRifle : UsableWeapon
         }
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
@@ -50,21 +52,21 @@ public class SemiAutoRifle : UsableWeapon
     {
         if (rifle.isFire)
         {
-            rifle.Fire(spawn);
+            rifle.Fire(playerObject.GetComponentInChildren<Camera>());
         }
     }
 
     private void BurstFire()
     {
-        if (rifle.isFire && hasReleasedFire)
+        if (Keybindings.instance.isFire && hasReleasedFire)
         {
             for (int i = 0; i < 3; i++)
             {
-                rifle.Fire(spawn); 
+                rifle.Fire(playerObject.GetComponentInChildren<Camera>()); 
             }
             hasReleasedFire = false;
         }
-        else if (!rifle.isFire)
+        else if (!Keybindings.instance.isFire)
         {
             hasReleasedFire = true;
         }

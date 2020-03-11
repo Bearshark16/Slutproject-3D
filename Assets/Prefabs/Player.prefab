@@ -1789,86 +1789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0757a8b7b0cab2543a7e73edb64a6d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementControlls:
-    m_Name: Movement Controlls
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 3966f64a-a4b4-43de-a7d1-c382d8f41d33
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: WASD
-      m_Id: 44853278-ea0b-4540-8488-bded8308e752
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement Controlls
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 57445980-5227-49b3-a87a-d9ba84726ac2
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement Controlls
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 340d95eb-d657-4695-aa7a-21d2d47712fe
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement Controlls
-      m_Flags: 8
-    - m_Name: left
-      m_Id: b05bde2e-c870-4c46-b5a0-dda1d3c5884f
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement Controlls
-      m_Flags: 8
-    - m_Name: right
-      m_Id: c4afa66a-3bef-41f4-96af-cb576779f97a
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Movement Controlls
-      m_Flags: 8
-  sprintButton:
-    m_Name: Sprint Button
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a53f7ebe-acaa-4075-a273-24294c3240a2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 3b017083-2d17-4125-8d1d-be5db71f10b1
-      m_Path: <Keyboard>/leftShift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Sprint Button
-      m_Flags: 0
-  jump:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 49d1be09-31cf-4319-ab01-dcf8969db197
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: edfd0c87-7a2e-4eff-95ac-18f4d883be6a
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Jump
-      m_Flags: 0
   controller: {fileID: 5942866942447510914}
   walkingSpeed: 10
   runningSpeed: 15
@@ -2268,7 +2188,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 100
+  m_fontSize: 80
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
