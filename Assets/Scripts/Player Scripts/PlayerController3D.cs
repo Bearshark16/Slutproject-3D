@@ -11,22 +11,26 @@ public class PlayerController3D : MonoBehaviour
     public float jumpHeight = 3f;
     public float gravity = -9.81f;
 
-    private float gravityMultiplier = -9.81f;
-
     private Vector3 velocity;
     private bool isGrounded;
     private bool hasReleasedJump = true;
+    private Keybindings keybindings;
+
+    private void Awake()
+    {
+        keybindings = this.GetComponent<Keybindings>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keybindings.instance.isRunning) 
+        if (keybindings.isRunning) 
         {
-            Move(controller, Keybindings.instance.direction.x, Keybindings.instance.direction.y, runningSpeed, jumpHeight, gravity, Keybindings.instance.isJumping);
+            Move(controller, keybindings.direction.x, keybindings.direction.y, runningSpeed, jumpHeight, gravity, keybindings.isJumping);
         }
         else 
         {
-            Move(controller, Keybindings.instance.direction.x, Keybindings.instance.direction.y, walkingSpeed, jumpHeight, gravity, Keybindings.instance.isJumping);
+            Move(controller, keybindings.direction.x, keybindings.direction.y, walkingSpeed, jumpHeight, gravity, keybindings.isJumping);
         } 
     }
 
@@ -61,7 +65,7 @@ public class PlayerController3D : MonoBehaviour
 
     private float Jump(float height, float pull) 
     {
-        float value = Mathf.Sqrt(height * -2 * pull * gravityMultiplier);
+        float value = Mathf.Sqrt(height * -2 * pull);
 
         return value;
     }

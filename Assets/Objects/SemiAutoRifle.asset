@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SemiAutoRifle
   m_EditorClassIdentifier: 
   damage: 10
-  Range: 200
+  Range: 50
   magazineSize: 30
   bulletPrefab: {fileID: 2240793307745596466, guid: bb31c93c50f35264a8c0a6080aecf59b,
     type: 3}

@@ -16,11 +16,7 @@ public abstract class Weapon : ScriptableObject
     [SerializeField]
     protected GameObject bulletPrefab;
 
-    protected int fireRate;
-    [NonSerialized]
-    public bool isFire;
-
-    public virtual void Fire(GameObject spawn)
+    public virtual void Fire(Camera cam)
     {
         Debug.Log("Fire");
     }

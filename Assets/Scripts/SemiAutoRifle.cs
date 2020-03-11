@@ -13,31 +13,13 @@ public class SemiAutoRifle : UsableWeapon
     private GameObject spawn;
 
     private bool hasReleasedFire = true;
-
-    private void Awake()
-    {
-        fire.performed += OnFire;
-        fire.canceled += OnFire;
-    }
-
-    public void OnFire(InputAction.CallbackContext ctx)
-    {
-        var value = ctx.ReadValue<float>();
-        if (value > 0)
-        {
-            rifle.isFire = true;
-        }
-        else
-        {
-            rifle.isFire = false;
-        }
-    }
-
-    
+    private Keybindings keybindings;
 
     // Update is called once per frame
     void Update()
     {
+        keybindings = playerObject.GetComponent<Keybindings>();
+
         if (rifle.Burst)
         {
             BurstFire(); 
@@ -50,7 +32,7 @@ public class SemiAutoRifle : UsableWeapon
 
     private void FullAutoFire()
     {
-        if (rifle.isFire)
+        if (keybindings.isFire)
         {
             rifle.Fire(playerObject.GetComponentInChildren<Camera>());
         }
@@ -71,16 +53,4 @@ public class SemiAutoRifle : UsableWeapon
             hasReleasedFire = true;
         }
     }
-
-    #region OnEnable&Disable
-    private void OnEnable()
-    {
-        fire.Enable();
-    }
-
-    private void OnDisable()
-    {
-        fire.Disable();
-    } 
-    #endregion
 }

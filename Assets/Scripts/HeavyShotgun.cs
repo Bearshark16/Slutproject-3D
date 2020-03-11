@@ -6,65 +6,24 @@ using UnityEngine.InputSystem;
 public class HeavyShotgun : UsableWeapon
 {
     [SerializeField]
-    protected InputAction fire;
-    [SerializeField]
     private Weapon shotgun;
-    [SerializeField]
-    private GameObject spawnOne;
-    [SerializeField]
-    private GameObject spawnTwo;
-    [SerializeField]
-    private GameObject spawnThree;
-    [SerializeField]
-    private GameObject spawnFour;
 
     private bool hasReleasedFire = true;
-
-    private void Awake()
-    {
-        fire.performed += OnFire;
-        fire.canceled += OnFire;
-    }
-
-    public void OnFire(InputAction.CallbackContext ctx)
-    {
-        var value = ctx.ReadValue<float>();
-        if (value > 0)
-        {
-            shotgun.isFire = true;
-        }
-        else
-        {
-            shotgun.isFire = false;
-        }
-    }
+    private Keybindings keybindings;
 
     // Update is called once per frame
     void Update()
     {
-        if (shotgun.isFire && hasReleasedFire)
+        keybindings = playerObject.GetComponent<Keybindings>();
+
+        if (keybindings.isFire && hasReleasedFire)
         {
-            shotgun.Fire(spawnOne);
-            shotgun.Fire(spawnTwo);
-            shotgun.Fire(spawnThree);
-            shotgun.Fire(spawnFour);
+            shotgun.Fire(playerObject.GetComponentInChildren<Camera>());
             hasReleasedFire = false;
         }
-        else if (!shotgun.isFire)
+        else if (!keybindings.isFire)
         {
             hasReleasedFire = true;
         }
     }
-
-    #region OnEnable&Disable
-    private void OnEnable()
-    {
-        fire.Enable();
-    }
-
-    private void OnDisable()
-    {
-        fire.Disable();
-    }
-    #endregion
 }
