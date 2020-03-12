@@ -34,6 +34,11 @@ public class Target : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<Target>().Damage(10);
+        Target target = collision.gameObject.GetComponent<Target>();
+        if (target != null)
+        {
+            target.Damage(10);
+        }
+        
     }
 }

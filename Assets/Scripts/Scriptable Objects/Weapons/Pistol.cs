@@ -7,14 +7,16 @@ public class Pistol : Weapon
 {
     public override void Fire(Camera cam)
     {
-        Debug.Log("fire");
-        //GameObject clone = Instantiate(bulletPrefab, spawn.transform.position, spawn.transform.rotation) as GameObject;
-        //clone.GetComponent<Rigidbody>().AddForce(spawn.transform.forward * 2000);
-
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Range))
         {
+            Debug.Log("fire");
             Debug.Log(hit.transform.name);
+            Target target = hit.transform.GetComponent<Target>();
+            if(target != null)
+            {
+                target.Damage(damage);
+            }
         }
     }
 }

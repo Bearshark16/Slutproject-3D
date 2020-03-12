@@ -11,12 +11,19 @@ public class ObjectInteraction : MonoBehaviour
     public float range = 100f;
 
     public GameObject weaponLocation;
-
     public GameObject toolTip;
     public TextMeshProUGUI pickUpName;
+    public TextMeshProUGUI magazine;
+    public TextMeshProUGUI ammoCapacity;
 
     private GameObject newWp;
     private GameObject oldWp;
+    private Keybindings keybindings;
+
+    private void Awake() 
+    {
+        keybindings = this.GetComponent<Keybindings>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,7 +35,8 @@ public class ObjectInteraction : MonoBehaviour
             {
                 toolTip.SetActive(true);
                 pickUpName.text = hit.transform.name;
-                if (Keybindings.instance.isInteracting)
+                Debug.Log(hit.transform.name.IndexOf("(clone)"));
+                if (keybindings.isInteracting)
                 {
                     var local = hit.transform.position;
                     newWp = hit.transform.GetComponent<PickUp>().weaponPrefab;
@@ -37,8 +45,11 @@ public class ObjectInteraction : MonoBehaviour
                         oldWp = child.gameObject.GetComponent<UsableWeapon>().pickUpVersion;
                         Destroy(child.gameObject);
                     }
+                    if (oldWp)
+                    {
+                        Instantiate(oldWp, local, oldWp.transform.rotation);
+                    }
                     Destroy(hit.transform.gameObject);
-                    Instantiate(oldWp, local, oldWp.transform.rotation);
                     GameObject x = Instantiate(newWp, weaponLocation.transform.position, weaponLocation.transform.rotation);
                     x.transform.SetParent(weaponLocation.transform);
 

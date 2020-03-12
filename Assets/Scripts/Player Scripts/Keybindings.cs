@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,12 +13,14 @@ public class Keybindings : MonoBehaviour
     public InputAction sprint;
     public InputAction jump;
     public InputAction fire;
+    public InputAction reload;
     public InputAction interact;
 
     public bool isJumping;
     public bool isRunning;
     public bool isInteracting;
     public bool isFire;
+    public bool isReloading;
 
     public Vector2 direction;
     public Vector2 rotation;
@@ -42,8 +45,23 @@ public class Keybindings : MonoBehaviour
         jump.canceled += OnJump;
         fire.performed += OnFire;
         fire.canceled += OnFire;
+        reload.performed += OnReload;
+        reload.canceled += OnReload;
         interact.performed += OnPickUp;
         interact.canceled += OnPickUp;
+    }
+
+    private void OnReload(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValue<float>();
+        if (value > 0) 
+        {
+            isReloading = true;
+        }
+        else 
+        {
+            isReloading = false;
+        }
     }
 
     private void OnJump(InputAction.CallbackContext ctx)
@@ -115,6 +133,7 @@ public class Keybindings : MonoBehaviour
         sprint.Enable();
         jump.Enable();
         fire.Enable();
+        reload.Enable();
         interact.Enable();
     }
 
@@ -125,6 +144,7 @@ public class Keybindings : MonoBehaviour
         sprint.Disable();
         jump.Disable();
         fire.Disable();
+        reload.Disable();
         interact.Disable();
     }
 }

@@ -6,15 +6,10 @@ using UnityEngine.InputSystem;
 
 public abstract class Weapon : ScriptableObject
 {
-    
-    [SerializeField]
-    protected int damage;
-    [SerializeField]
-    protected int Range;
-    [SerializeField]
-    protected int magazineSize;
-    [SerializeField]
-    protected GameObject bulletPrefab;
+    public float damage;
+    public float Range;
+    public float magazineSize;
+    public float ammoCapacity;
 
     public virtual void Fire(Camera cam)
     {

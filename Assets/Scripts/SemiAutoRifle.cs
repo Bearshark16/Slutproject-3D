@@ -6,27 +6,53 @@ using UnityEngine.InputSystem;
 public class SemiAutoRifle : UsableWeapon
 {
     [SerializeField]
-    protected InputAction fire;
-    [SerializeField]
     private Rifle rifle;
     [SerializeField]
     private GameObject spawn;
 
+    private float magazine;
+    private float ammo;
     private bool hasReleasedFire = true;
     private Keybindings keybindings;
+
+    private void Awake() 
+    {
+        magazine = rifle.magazineSize;
+        ammo = rifle.ammoCapacity;
+    }
 
     // Update is called once per frame
     void Update()
     {
         keybindings = playerObject.GetComponent<Keybindings>();
+        playerObject.GetComponent<ObjectInteraction>().magazine.text = magazine.ToString();
+        playerObject.GetComponent<ObjectInteraction>().ammoCapacity.text = ammo.ToString();
 
-        if (rifle.Burst)
+        if (magazine != 0)
         {
-            BurstFire(); 
+            if (rifle.Burst)
+            {
+                BurstFire();
+            }
+            else
+            {
+                FullAutoFire();
+            }
         }
-        else
+
+        if (keybindings.isReloading) 
         {
-            FullAutoFire();
+            if (magazine == 0) 
+            {
+                ammo -= rifle.magazineSize;
+                magazine += rifle.magazineSize;
+            }
+            else if (magazine != 0) 
+            {
+                var value = rifle.magazineSize - magazine;
+                ammo -= value;
+                magazine += value;
+            }
         }
     }
 
@@ -35,20 +61,22 @@ public class SemiAutoRifle : UsableWeapon
         if (keybindings.isFire)
         {
             rifle.Fire(playerObject.GetComponentInChildren<Camera>());
+            magazine--;
         }
     }
 
     private void BurstFire()
     {
-        if (Keybindings.instance.isFire && hasReleasedFire)
+        if (keybindings.isFire && hasReleasedFire)
         {
             for (int i = 0; i < 3; i++)
             {
                 rifle.Fire(playerObject.GetComponentInChildren<Camera>()); 
+                magazine--;
             }
             hasReleasedFire = false;
         }
-        else if (!Keybindings.instance.isFire)
+        else if (!keybindings.isFire)
         {
             hasReleasedFire = true;
         }

@@ -10,10 +10,10 @@ public class Rifle : Weapon
 
     public override void Fire(Camera cam)
     {
-        Debug.Log("fire");
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Range))
         {
+            Debug.Log("fire");
             Debug.Log(hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
             if(target != null)

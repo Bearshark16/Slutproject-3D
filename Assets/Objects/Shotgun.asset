@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2f8e7e8c83fc84a97e91b8de9e2ed6, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  damage: 0
-  Range: 0
-  magazineSize: 0
+  damage: 80
+  Range: 25
+  magazineSize: 15
   bulletPrefab: {fileID: 4537392686654290728, guid: 9f4560c2029498a4580a65abd05dc8f0,
     type: 3}

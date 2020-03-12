@@ -306,7 +306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -746.9001, y: -439.2}
+  m_AnchoredPosition: {x: -746.90015, y: -439.2}
   m_SizeDelta: {x: -1538.4, y: -919.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2084534419073364970
@@ -1552,7 +1552,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 5942866941273962134}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 310
+    m_Bits: 278
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -1797,6 +1797,8 @@ MonoBehaviour:
   weaponLocation: {fileID: 8083852717263982260}
   toolTip: {fileID: 76473763138945541}
   pickUpName: {fileID: 5384557246304088455}
+  magazine: {fileID: 7037499963554589795}
+  ammoCapacity: {fileID: 3757425022399774995}
 --- !u!114 &8137813449377906463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1921,6 +1923,22 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Fire
       m_Flags: 0
+  reload:
+    m_Name: Reload
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: aa6f3a0b-b3aa-41cb-8ab8-30762d2f0f10
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: bdf0262b-9e43-44cd-9371-2c2dc67d53f3
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reload
+      m_Flags: 0
   interact:
     m_Name: Interact
     m_Type: 1
@@ -1941,6 +1959,7 @@ MonoBehaviour:
   isRunning: 0
   isInteracting: 0
   isFire: 0
+  isReloading: 0
   direction: {x: 0, y: 0}
   rotation: {x: 0, y: 0}
 --- !u!114 &5043342137571525357
