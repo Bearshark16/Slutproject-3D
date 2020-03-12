@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.Networking;
 
-public class ObjectInteraction : MonoBehaviour
+public class ObjectInteraction : NetworkBehaviour
 {
     public Camera cam;
     public float range = 100f;
@@ -28,6 +29,11 @@ public class ObjectInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isLocalPlayer) 
+        {
+            return;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {

@@ -15,5 +15,4 @@ MonoBehaviour:
   damage: 80
   Range: 25
   magazineSize: 15
-  bulletPrefab: {fileID: 4537392686654290728, guid: 9f4560c2029498a4580a65abd05dc8f0,
-    type: 3}
+  ammoCapacity: 30

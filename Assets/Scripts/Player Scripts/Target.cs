@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Networking;
 
-public class Target : MonoBehaviour
+public class Target : NetworkBehaviour
 {
     public float healthPoints = 100f;
     public TextMeshProUGUI healthPointsUI;
 
     private void Update()
     {
+        if(!isLocalPlayer) 
+        {
+            return;
+        }
+
         if (healthPointsUI != null)
         {
             healthPointsUI.text = healthPoints.ToString(); 

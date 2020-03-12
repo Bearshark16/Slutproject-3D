@@ -15,7 +15,7 @@ public class SemiAutoRifle : UsableWeapon
     private bool hasReleasedFire = true;
     private Keybindings keybindings;
 
-    private void Awake() 
+    private void Awake()
     {
         magazine = rifle.magazineSize;
         ammo = rifle.ammoCapacity;
@@ -40,19 +40,38 @@ public class SemiAutoRifle : UsableWeapon
             }
         }
 
-        if (keybindings.isReloading) 
+        if (keybindings.isReloading)
         {
-            if (magazine == 0) 
+            Reload();
+        }
+    }
+
+    private void Reload()
+    {
+        if (magazine == 0)
+        {
+            if (ammo < rifle.ammoCapacity)
+            {
+                magazine += ammo;
+                ammo = 0;
+            }
+            else if (ammo == 0)
+            {
+                Debug.Log("Reserves are empty");
+                return;
+            }
+            else
             {
                 ammo -= rifle.magazineSize;
                 magazine += rifle.magazineSize;
             }
-            else if (magazine != 0) 
-            {
-                var value = rifle.magazineSize - magazine;
-                ammo -= value;
-                magazine += value;
-            }
+
+        }
+        else if (magazine != 0)
+        {
+            var value = rifle.magazineSize - magazine;
+            ammo -= value;
+            magazine += value;
         }
     }
 
@@ -71,7 +90,7 @@ public class SemiAutoRifle : UsableWeapon
         {
             for (int i = 0; i < 3; i++)
             {
-                rifle.Fire(playerObject.GetComponentInChildren<Camera>()); 
+                rifle.Fire(playerObject.GetComponentInChildren<Camera>());
                 magazine--;
             }
             hasReleasedFire = false;

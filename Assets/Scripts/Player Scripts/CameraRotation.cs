@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Networking;
 
-public class CameraRotation : MonoBehaviour
+public class CameraRotation : NetworkBehaviour
 {
     public Transform playerBody;
     public Camera playerCamera;
@@ -23,6 +24,11 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isLocalPlayer) 
+        {
+            return;
+        }
+
         mouseX = Keybindings.instance.rotation.x;
         mouseY = Keybindings.instance.rotation.y;
         MouseLook();
