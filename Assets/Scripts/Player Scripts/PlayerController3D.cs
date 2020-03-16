@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Networking;
 
 public class PlayerController3D : NetworkBehaviour
@@ -35,6 +34,7 @@ public class PlayerController3D : NetworkBehaviour
         if(!isLocalPlayer) 
         {
             this.GetComponentInChildren<Camera>().enabled = false;
+            this.GetComponentInChildren<AudioListener>().enabled = false;
             this.GetComponent<PlayerController3D>().enabled = false;
             this.GetComponent<CameraRotation>().enabled = false;
             this.GetComponent<ObjectInteraction>().enabled = false;

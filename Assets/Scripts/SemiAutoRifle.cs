@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SemiAutoRifle : UsableWeapon
 {
     [SerializeField]
     private Rifle rifle;
     [SerializeField]
-    private GameObject spawn;
+    private ParticleSystem muzzleFlash;
 
     private float magazine;
     private float ammo;
@@ -79,6 +78,7 @@ public class SemiAutoRifle : UsableWeapon
     {
         if (keybindings.isFire)
         {
+            muzzleFlash.Play();
             rifle.Fire(playerObject.GetComponentInChildren<Camera>());
             magazine--;
         }
@@ -90,6 +90,7 @@ public class SemiAutoRifle : UsableWeapon
         {
             for (int i = 0; i < 3; i++)
             {
+                muzzleFlash.Play();
                 rifle.Fire(playerObject.GetComponentInChildren<Camera>());
                 magazine--;
             }

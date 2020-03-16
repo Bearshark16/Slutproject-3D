@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class HeavyShotgun : UsableWeapon
 {
@@ -27,14 +26,18 @@ public class HeavyShotgun : UsableWeapon
         playerObject.GetComponent<ObjectInteraction>().ammoCapacity.text = ammo.ToString();
 
 
-        if (keybindings.isFire && hasReleasedFire)
+        if (magazine != 0)
         {
-            shotgun.Fire(playerObject.GetComponentInChildren<Camera>());
-            hasReleasedFire = false;
-        }
-        else if (!keybindings.isFire)
-        {
-            hasReleasedFire = true;
+            if (keybindings.isFire && hasReleasedFire)
+            {
+                shotgun.Fire(playerObject.GetComponentInChildren<Camera>());
+                magazine--;
+                hasReleasedFire = false;
+            }
+            else if (!keybindings.isFire)
+            {
+                hasReleasedFire = true;
+            } 
         }
 
         if (keybindings.isReloading)

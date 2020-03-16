@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class HandGun : UsableWeapon
 {
@@ -26,14 +25,18 @@ public class HandGun : UsableWeapon
         playerObject.GetComponent<ObjectInteraction>().magazine.text = magazine.ToString();
         playerObject.GetComponent<ObjectInteraction>().ammoCapacity.text = ammo.ToString();
 
-        if (keybindings.isFire && hasReleasedFire)
+        if (magazine != 0)
         {
-            pistol.Fire(playerObject.GetComponentInChildren<Camera>());
-            hasReleasedFire = false;
-        }
-        else if (!keybindings.isFire)
-        {
-            hasReleasedFire = true;
+            if (keybindings.isFire && hasReleasedFire)
+            {
+                pistol.Fire(playerObject.GetComponentInChildren<Camera>());
+                magazine--;
+                hasReleasedFire = false;
+            }
+            else if (!keybindings.isFire)
+            {
+                hasReleasedFire = true;
+            } 
         }
 
         if (keybindings.isReloading)

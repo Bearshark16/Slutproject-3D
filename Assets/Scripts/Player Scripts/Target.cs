@@ -26,7 +26,7 @@ public class Target : NetworkBehaviour
     {
         Debug.Log("hit");
 
-        healthPoints -= amount;
+        healthPoints = healthPoints - amount;
         if (healthPoints <= 0f)
         {
             Die();
