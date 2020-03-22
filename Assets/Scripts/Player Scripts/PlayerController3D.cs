@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class PlayerController3D : NetworkBehaviour
 {
     public CharacterController controller;
+    public Rigidbody rigidbody;
     public GameObject userInterface;
     public float walkingSpeed = 10f;
     public float runningSpeed = 15f;
@@ -35,21 +36,23 @@ public class PlayerController3D : NetworkBehaviour
         {
             this.GetComponentInChildren<Camera>().enabled = false;
             this.GetComponentInChildren<AudioListener>().enabled = false;
-            this.GetComponent<PlayerController3D>().enabled = false;
-            this.GetComponent<CameraRotation>().enabled = false;
-            this.GetComponent<ObjectInteraction>().enabled = false;
-            this.GetComponent<Keybindings>().enabled = false;
+            //this.GetComponent<PlayerController3D>().enabled = false;
+            //this.GetComponent<CameraRotation>().enabled = false;
+            //this.GetComponent<ObjectInteraction>().enabled = false;
+            //this.GetComponent<Keybindings>().enabled = false;
             userInterface.SetActive(false);
             return;
         }
 
         if (keybindings.isRunning)
         {
-            CmdMove(controller, keybindings.direction.x, keybindings.direction.y, runningSpeed, jumpHeight, gravity, keybindings.isJumping);
+            //CmdMove(controller, keybindings.direction.x, keybindings.direction.y, runningSpeed, jumpHeight, gravity, keybindings.isJumping);
+            Move(keybindings.direction.x, keybindings.direction.y, runningSpeed);
         }
         else
         {
-            CmdMove(controller, keybindings.direction.x, keybindings.direction.y, walkingSpeed, jumpHeight, gravity, keybindings.isJumping);
+            //CmdMove(controller, keybindings.direction.x, keybindings.direction.y, walkingSpeed, jumpHeight, gravity, keybindings.isJumping);
+            Move(keybindings.direction.x, keybindings.direction.y, walkingSpeed);
         }
     }
 
@@ -87,5 +90,19 @@ public class PlayerController3D : NetworkBehaviour
         float value = Mathf.Sqrt(height * -2 * pull);
 
         return value;
+    }
+    void Move(float horzontal, float vertical, float speed)
+    {
+        /*Vector3 movement = new Vector3(horzontal, 0, vertical);
+
+        //transform.rotation = Quaternion.LookRotation(movement * new Vector2(0, 90f));
+
+        transform.Translate(movement * speed * Time.deltaTime, Space.World);*/
+
+        Vector3 movement = new Vector3(horzontal, 0, vertical) * Time.smoothDeltaTime * speed;
+
+        Vector3 targetPosition = rigidbody.position + rigidbody.transform.TransformDirection(movement);
+
+        rigidbody.MovePosition(targetPosition);
     }
 }

@@ -247,6 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4054100971495624}
   - component: {fileID: 5217597427790345252}
+  - component: {fileID: 5627180557538526586}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -290,24 +291,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpVersion: {fileID: 2224572703155455502, guid: f725916b5cb9aff419b98a11f226b374,
     type: 3}
-  fire:
-    m_Name: Fire
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: acfeb8d8-ce0c-4ee8-815d-46e6a7972045
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 00edf732-b7aa-4101-a617-394c30bc04af
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
   pistol: {fileID: 11400000, guid: 728e0e86f700c674fbff113ab7f21f8c, type: 2}
-  spawn: {fileID: 900067110216742458}
+--- !u!114 &5627180557538526586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374600452982646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1429655430221584
 GameObject:
   m_ObjectHideFlags: 0

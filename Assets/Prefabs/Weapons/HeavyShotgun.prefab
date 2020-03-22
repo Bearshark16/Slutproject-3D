@@ -247,6 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166463531722480}
   - component: {fileID: -2347814308094496003}
+  - component: {fileID: 3321491835364455026}
   m_Layer: 0
   m_Name: HeavyShotgun
   m_TagString: Untagged
@@ -292,27 +293,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpVersion: {fileID: 1513423490680249421, guid: 4294e6a5c9b59c64ba1b47c1238c3bf6,
     type: 3}
-  fire:
-    m_Name: Fire
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 584fb2a3-4083-4acd-b325-c2e8c61529df
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 9d7e44dc-94fb-4519-9927-71f874576cde
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire
-      m_Flags: 0
   shotgun: {fileID: 11400000, guid: 280106cd5d583d44eb10e7a6669f0206, type: 2}
-  spawnOne: {fileID: 8688651873677895819}
-  spawnTwo: {fileID: 1383701956550558483}
-  spawnThree: {fileID: 8136725205060930360}
-  spawnFour: {fileID: 1285022242837646713}
+--- !u!114 &3321491835364455026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294672646082164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1440815593833642
 GameObject:
   m_ObjectHideFlags: 0
