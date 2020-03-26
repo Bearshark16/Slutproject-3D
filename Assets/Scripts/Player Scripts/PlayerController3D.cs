@@ -31,7 +31,6 @@ public class PlayerController3D : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if(!isLocalPlayer) 
         {
             this.GetComponentInChildren<Camera>().enabled = false;
@@ -43,6 +42,8 @@ public class PlayerController3D : NetworkBehaviour
             userInterface.SetActive(false);
             return;
         }
+
+        keybindings = this.GetComponent<Keybindings>();
 
         if (keybindings.isRunning)
         {

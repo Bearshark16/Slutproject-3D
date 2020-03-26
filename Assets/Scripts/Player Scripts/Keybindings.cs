@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Networking;
 
-public class Keybindings : MonoBehaviour
+public class Keybindings : NetworkBehaviour
 {
     public static Keybindings instance;
 
