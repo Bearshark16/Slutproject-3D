@@ -7,6 +7,9 @@ TagManager:
   - Level
   - Weapon
   - PickUp
+  - shotgunspawn
+  - riflespawn
+  - pistolspawn
   layers:
   - Default
   - TransparentFX
