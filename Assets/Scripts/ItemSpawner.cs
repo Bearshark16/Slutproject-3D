@@ -9,17 +9,30 @@ public class ItemSpawner : NetworkBehaviour
     public List<string> keys = new List<string>();
     public List<GameObject> values = new List<GameObject>();
 
+    public GameObject itemSpawnPoints;
+
     private Dictionary<string, GameObject> items = new Dictionary<string, GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    private Random gen = new Random();
+
+    private void Awake()
     {
-        if(keys.Count != 0 && values.Count != 0)
+        if (keys.Count != 0 && values.Count != 0)
         {
             for (int i = 0; i < keys.Count; i++)
             {
                 items.Add(keys[i], values[i]);
             }
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        foreach(Transform ch in itemSpawnPoints.transform)
+        {
+            int index = Random.Range(0, values.Count);
+            GameObject x = Instantiate(values[index], ch.position, ch.rotation);
         }
     }
 
