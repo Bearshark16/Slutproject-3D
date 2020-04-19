@@ -29,7 +29,7 @@ public class SemiAutoRifle : UsableWeapon
 
         if (magazine != 0)
         {
-            if (rifle.Burst)
+            if (rifle.burst)
             {
                 BurstFire();
             }

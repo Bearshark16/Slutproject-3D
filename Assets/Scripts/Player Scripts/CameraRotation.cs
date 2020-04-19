@@ -37,6 +37,9 @@ public class CameraRotation : NetworkBehaviour
 
     private void MouseLook()
     {
+        // This code was written with the help of this YouTube tutorial
+        // https://www.youtube.com/watch?v=_QajrabyTJc
+
         mouseX = mouseX * sensitivity * Time.deltaTime;
         mouseY = mouseY * sensitivity * Time.deltaTime;
 

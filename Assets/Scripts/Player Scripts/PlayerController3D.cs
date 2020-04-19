@@ -47,60 +47,16 @@ public class PlayerController3D : NetworkBehaviour
 
         if (keybindings.isRunning)
         {
-            //CmdMove(controller, keybindings.direction.x, keybindings.direction.y, runningSpeed, jumpHeight, gravity, keybindings.isJumping);
             Move(keybindings.direction.x, keybindings.direction.y, runningSpeed);
         }
         else
         {
-            //CmdMove(controller, keybindings.direction.x, keybindings.direction.y, walkingSpeed, jumpHeight, gravity, keybindings.isJumping);
             Move(keybindings.direction.x, keybindings.direction.y, walkingSpeed);
         }
     }
 
-    public void CmdMove(CharacterController controller, float x, float z, float speed, float jumpHeight, float gravity, bool isJumping)
-    {
-        isGrounded = controller.isGrounded;
-        Debug.Log("isGrounded: " + isGrounded);
-
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-
-        Vector3 movement = (x * controller.transform.right + z * controller.transform.forward) * speed * Time.deltaTime;
-
-        controller.Move(movement);
-
-        if (isJumping && isGrounded && hasReleasedJump)
-        {
-            velocity.y = CmdJump(jumpHeight, gravity);
-            hasReleasedJump = false;
-        }
-        else if (!isJumping)
-        {
-            hasReleasedJump = true;
-        }
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
-    }
-
-    private float CmdJump(float height, float pull)
-    {
-        float value = Mathf.Sqrt(height * -2 * pull);
-
-        return value;
-    }
-
     void Move(float horzontal, float vertical, float speed)
     {
-        //Vector3 movement = new Vector3(vertical, 0, horzontal);
-
-        //transform.rotation = Quaternion.LookRotation(movement * new Vector2(0, 90f));
-
-        //transform.Translate(movement * speed * Time.deltaTime, Space.World);
-
         Vector3 movement = new Vector3(horzontal, 0, vertical) * Time.smoothDeltaTime * speed;
 
         Vector3 targetPosition = rigidbody.position + rigidbody.transform.TransformDirection(movement);

@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Weapon : ScriptableObject
 {
     public float damage;
-    public float Range;
+    public float range;
     public float magazineSize;
     public float ammoCapacity;
 

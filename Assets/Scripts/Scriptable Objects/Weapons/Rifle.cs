@@ -6,12 +6,12 @@ using UnityEngine;
 public class Rifle : Weapon
 {
     [SerializeField]
-    public bool Burst;
+    public bool burst;
 
     public override void Fire(Camera cam)
     {
         RaycastHit hit;
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, Range))
+        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Debug.Log("fire");
             Debug.Log(hit.transform.name);
